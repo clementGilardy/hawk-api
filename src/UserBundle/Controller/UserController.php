@@ -11,10 +11,7 @@ use UserBundle\Entity\User;
 
 class UserController extends Controller
 {
-    /**
-     * @Route("/users", name="users_list")
-     * @Method({"GET"})
-     */
+
     public function getUsersAction(Request $request)
     {
         $users = $this->get('doctrine.orm.entity_manager')->getRepository('UserBundle:User')->findAll();
@@ -31,12 +28,8 @@ class UserController extends Controller
         return new JsonResponse($formatted);
     }
 
-    /**
-     * @Route("/users/{user_id}", name="users_one")
-     * @Method({"GET"})
-     */
-    public function getUserAction(Request $request){
-        $user = $this->get('doctrine.orm.entity_manager')->getRepository('UserBundle:User')->find($request->get('user_id'));
+    public function getUserAction($id,Request $request){
+        $user = $this->get('doctrine.orm.entity_manager')->getRepository('UserBundle:User')->find($id);
         $formatted = [
             'id'=>$user->getId(),
             'lastname'=>$user->getLastname(),

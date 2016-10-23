@@ -1,6 +1,6 @@
 user:
     resource: "@UserBundle/Controller/"
-    type:     annotation
+    type:     rest
     prefix:   /
 
 
